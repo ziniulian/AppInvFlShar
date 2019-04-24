@@ -1,0 +1,47 @@
+/**************** 首页 ********************/
+.txt {
+	width: 66%;
+	padding: 0 1rem;
+	margin: 2%;
+	font-size: 1rem;
+	line-height: 2;
+	border-radius: 2rem;
+	background-color: #EEE;
+	vertical-align: middle;
+}
+
+.btn {
+	font-size: 1.5rem;
+	font-weight: bolder;
+	vertical-align: middle;
+}
+
+.bcnOut {
+	width: 97%;
+	margin: 1rem auto;
+	line-height: 2.5;
+}
+
+.list {
+	margin: 1rem;
+}
+
+.list a {
+	display: block;
+	color: #000;
+	line-height: 2.3;
+}
+
+.non {
+	text-align: center;
+	color: #CCC;
+	font-style: italic;
+}
+
+.memo {
+	cursor: pointer;
+	position: fixed;
+	bottom: 1rem;
+	right: 1rem;
+	color: #F00;
+}
