@@ -3,6 +3,7 @@ function init () {
 	var url = (req.id ? "getSimi/" + req.id : "getSimi");
 	tools.memo.bind(memoDom);
 	rfdo.ajxGet(url);
+	dat.id = req.id - 0;
 
 	// 测试数据
 	// console.log(url);
@@ -11,6 +12,7 @@ function init () {
 }
 
 dat = {
+	id: 0,
     hdAjaxCb: function (d) {
         if (d.id) {
 			dat.crtBcn(d.p, d.nam);
@@ -26,7 +28,7 @@ dat = {
 		for (i = 0; i < d.length; i ++) {
 			a = document.createElement("a");
 			a.innerHTML = d[i].nam;
-			a.href = "./home.html?id=" + d[i].id;
+			a.href = "?id=" + d[i].id;
 			bcnDom.innerHTML += " ➣ ";
 			bcnDom.appendChild(a);
 		}
@@ -42,17 +44,22 @@ dat = {
 				switch (d[i].typ) {
 					case 1:
 						a.innerHTML = "<strong>📁 </strong>" + d[i].nam;
-						a.href = "./home.html?id=" + d[i].id;
+						a.href = "?id=" + d[i].id;
 						break;
 					case 2:
 						a.innerHTML = "<strong>📄 </strong>" + d[i].nam;
-						a.href = "javascript: rfdo.downLoad(\"" + d[i].path + "\");";
+						a.href = "javascript: rfdo.downLoad(\"" + d[i].path + "\",\"" + d[i].nam + "\");";
 						break;
 					default:
 						a.innerHTML = d[i].nam;
 						break;
 				}
 				listDom.appendChild(a);
+				if (d[i].memo) {
+					a = document.createElement("div");
+					a.innerHTML = d[i].memo;
+					listDom.appendChild(a);
+				}
 			}
 		} else {
 			a = document.createElement("div");

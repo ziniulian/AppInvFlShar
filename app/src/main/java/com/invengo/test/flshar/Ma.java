@@ -1,6 +1,8 @@
 package com.invengo.test.flshar;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,9 +18,13 @@ import com.invengo.test.flshar.entity.Web;
 import com.invengo.test.flshar.enums.EmUh;
 import com.invengo.test.flshar.enums.EmUrl;
 
+import java.io.File;
+
 import tk.ziniulian.util.AdrSys;
 import tk.ziniulian.util.DownLoader;
 import tk.ziniulian.util.Str;
+
+import static tk.ziniulian.util.UriParser.getPhotoPathFromContentUri;
 
 public class Ma extends AppCompatActivity {
 	private Handler uh = new UiHandler();
@@ -29,6 +35,7 @@ public class Ma extends AppCompatActivity {
 
 	private static String[] PERMISSIONS_STORAGE = {
 			"android.permission.READ_EXTERNAL_STORAGE",
+			"android.permission.ACCESS_ALL_DOWNLOADS",
 			"android.permission.WRITE_EXTERNAL_STORAGE" };
 
 	@Override
@@ -63,7 +70,7 @@ public class Ma extends AppCompatActivity {
 			}
 		});
 
-		sendUrl(EmUrl.Home);
+		sendUrl(EmUrl.Index);
 	}
 
 	@Override
@@ -94,6 +101,28 @@ public class Ma extends AppCompatActivity {
 			default:
 				return super.onKeyDown(keyCode, event);
 		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == 101) {
+			if (resultCode == RESULT_OK) {
+				Uri uri = data.getData();
+				if (uri != null) {
+					File f = new File(uri.toString());
+					String path = getPhotoPathFromContentUri(this, uri);
+					if (path != null) {
+						File file = new File(path);
+						if (file.exists()) {
+							wv.loadUrl(Str.meg(EmUrl.SetFil.toString(), file.toString(), file.getName()));
+							return;
+						}
+					}
+				}
+			}
+		}
+		wv.loadUrl(Str.meg(EmUrl.Memo.toString(), "文件选择失败！"));
 	}
 
 	public DownLoader getDr() {
@@ -147,7 +176,12 @@ public class Ma extends AppCompatActivity {
 					wv.loadUrl((String)msg.obj);
 					break;
 				case Ajax:
-					wv.loadUrl(Str.meg(EmUrl.AjaxCb.toString(), (String)msg.obj));
+					switch (msg.arg1) {
+						case 1:	// OkFil
+							wv.loadUrl(Str.meg(EmUrl.OkFil.toString(), (String)msg.obj));
+						default:
+							wv.loadUrl(Str.meg(EmUrl.AjaxCb.toString(), (String)msg.obj));
+					}
 					break;
 				case Err:
 					wv.loadUrl(Str.meg(EmUrl.Memo.toString(), (String)msg.obj));

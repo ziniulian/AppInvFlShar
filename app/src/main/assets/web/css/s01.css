@@ -29,7 +29,16 @@
 .list a {
 	display: block;
 	color: #000;
-	line-height: 2.3;
+	word-break: break-all;
+	margin: 1rem 0 0.5rem 0;
+}
+
+.list div {
+	font-size: 0.8rem;
+	margin-left: 1rem;
+	word-break: break-all;
+	line-height: 1;
+	color: #777;
 }
 
 .non {
@@ -44,4 +53,21 @@
 	bottom: 1rem;
 	right: 1rem;
 	color: #F00;
+}
+
+.mgrBtn {
+	font-weight: bolder;
+	vertical-align: middle;
+}
+
+.mgrTxt {
+	width: 80%;
+	padding: 0 0.6rem;
+	margin: 1rem auto;
+	font-size: 0.8rem;
+	line-height: 2;
+	word-break: break-all;
+	background-color: #EEE;
+	border: none;
+	outline: medium;
 }

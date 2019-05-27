@@ -11,7 +11,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
-import android.webkit.URLUtil;
 
 import com.invengo.test.flshar.enums.EmUh;
 
@@ -65,7 +64,8 @@ public class DownLoader {
 		// 允许下载的网路类型
 		request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
 		// 设置下载文件保存的路径和文件名
-		String fileName  = URLUtil.guessFileName(url, contentDisposition, mimeType);
+//		String fileName  = URLUtil.guessFileName(url, contentDisposition, mimeType);
+		String fileName  = contentDisposition;
 //Log.i("-----fileName:{}", fileName);
 		request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
 //        另外可选一下方法，自定义下载路径
