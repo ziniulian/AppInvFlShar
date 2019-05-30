@@ -42,7 +42,7 @@ dat.hdAjaxCb = function (d) {
 		dat.hdAjaxCbHome(d);
 	} else {
 		if (d.ok) {
-			window.location.href = "?id=" + dat.id;
+			window.location.reload();
 		} else {
 			tools.memo.show("新增失败：" + d.msg);
 		}
@@ -77,7 +77,7 @@ dat.setFil = function (path, nam) {
 dat.addFil = function () {
 	var nam = fpathDom.value;
 	if (nam) {
-		rfdo.upFil("upload/", nam, "" + dat.id, fmmoDom.value);
+		rfdo.upFil("upload/", nam, dat.id, fmmoDom.value);
 	} else {
 		tools.memo.show("请先选择文件");
 	}
@@ -87,7 +87,7 @@ dat.addFil = function () {
 dat.okFil = function (r) {
 	var nam = fpathDom.value;
 	if (r.ok) {
-		window.location.href = "?id=" + dat.id;
+		window.location.reload();
 	} else {
 		tools.memo.show("上传失败：" + r.msg);
 	}

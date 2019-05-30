@@ -1,9 +1,13 @@
 function init () {
-	var req = tools.getUrlReq();
-	var url = (req.id ? "getSimi/" + req.id : "getSimi");
+	var url, req = tools.getUrlReq();
+	if (req.id) {
+		url = "getSimi/" + req.id;
+		dat.id = req.id;
+	} else {
+		url = "getSimi";
+	}
 	tools.memo.bind(memoDom);
 	rfdo.ajxGet(url);
-	dat.id = req.id - 0;
 
 	// 测试数据
 	// console.log(url);
@@ -91,7 +95,8 @@ dat = {
 				window.history.back(-1);
 			}
 		} else {
-			tools.memo.exit("再按一次退出程序", "Exit");
+			// tools.memo.exit("再按一次退出程序", "Exit");
+			window.location.href = "./index.html";
 		}
 	}
 };

@@ -24,7 +24,6 @@ public class HttpAjaxUpFile implements Runnable {
 	private Handler h;
 	private String url;
 	private String filNam;	// POST的内容
-	private Thread t = new Thread(this);
 	private boolean busy = false;	// 繁忙
 
 	private String pid;
@@ -41,7 +40,7 @@ public class HttpAjaxUpFile implements Runnable {
 			this.filNam = fil;
 			this.pid = id;
 			this.memo = m;
-			this.t.start();
+			new Thread(this).start();
 			return true;
 		}
 		return false;

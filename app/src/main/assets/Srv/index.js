@@ -1,6 +1,6 @@
 // 资料下载测试服务
 require("lzr");
-var https = require("https");
+// var https = require("https");
 var mutipart = require("connect-multiparty");
 var fs = require("fs");
 
@@ -56,7 +56,7 @@ var dat = [
 
 var srv = new LZR.Node.Srv ({
 	ip: process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0",
-	port: process.env.OPENSHIFT_NODEJS_PORT || 80
+	port: process.env.OPENSHIFT_NODEJS_PORT || 8888
 });
 
 // 获取分类
@@ -225,12 +225,12 @@ srv.use("*", function (req, res) {
 
 srv.start();
 
-// 开启 HTTPS 协议
-var httpsOp = {
-	// passphrase: "123456",  // 生成密钥有密码时使用
-	key: fs.readFileSync("./key/privatekey.pem"),
-	cert: fs.readFileSync("./key/certificate.pem")
-};
-https.createServer(httpsOp, srv.so).listen(443, function() {
-	console.log("服务已运行 ...");
-});
+// // 开启 HTTPS 协议
+// var httpsOp = {
+// 	// passphrase: "123456",  // 生成密钥有密码时使用
+// 	key: fs.readFileSync("./key/privatekey.pem"),
+// 	cert: fs.readFileSync("./key/certificate.pem")
+// };
+// https.createServer(httpsOp, srv.so).listen(443, function() {
+// 	console.log("服务已运行 ...");
+// });

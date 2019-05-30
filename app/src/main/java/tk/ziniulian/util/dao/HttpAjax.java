@@ -21,7 +21,6 @@ public class HttpAjax implements Runnable {
 	private String url;
 	private String method;
 	private String content;	// POST的内容
-	private Thread t = new Thread(this);
 	private boolean busy = false;	// 繁忙
 
 	public HttpAjax (Handler hd) {
@@ -33,7 +32,7 @@ public class HttpAjax implements Runnable {
 			this.busy = true;
 			this.url = u;
 			this.method = "GET";
-			this.t.start();
+			new Thread(this).start();
 		}
 	}
 
@@ -43,7 +42,7 @@ public class HttpAjax implements Runnable {
 			this.url = u;
 			this.method = "POST";
 			this.content = c;
-			this.t.start();
+			new Thread(this).start();
 		}
 	}
 

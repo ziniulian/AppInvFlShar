@@ -22,7 +22,7 @@ public class Web {
 	private HttpAjax ajx;
 	private HttpAjaxUpFile ajxuf;
 	private DownLoader dr;
-	private String doMain = "http://192.169.0.150/";
+	private String doMain = "http://125.74.27.226:8888/";
 
 	public Web (Ma m) {
 		this.ma = m;
