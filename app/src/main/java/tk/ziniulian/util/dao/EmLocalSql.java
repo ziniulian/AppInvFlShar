@@ -17,16 +17,7 @@ public enum EmLocalSql {
 	KvAdd("insert into <2> values('<0>', '<1>')"),
 
 	// 删除键值对
-	KvDel("delete from <1> where k = '<0>'"),
-
-	// 获取所有一级目录
-	GetAll("select * from Simi where pid = 0"),
-
-	// 通过ID获取自身信息
-	GetOne("select * from Simi where id = <0>"),
-
-	// 通过ID获取父类
-	GetParent("select * from Simi where id in (<0>)");
+	KvDel("delete from <1> where k = '<0>'");
 
 	private final String sql;
 	EmLocalSql(String s) {

@@ -14,6 +14,8 @@ import android.webkit.MimeTypeMap;
 
 import com.invengo.test.flshar.enums.EmUh;
 
+import tk.ziniulian.util.dao.DbLocal;
+
 import static android.content.Context.DOWNLOAD_SERVICE;
 
 /**
@@ -24,11 +26,16 @@ import static android.content.Context.DOWNLOAD_SERVICE;
 public class DownLoader {
 	private Handler h;
 	private Context c;
+	private DbLocal db = null;
 	private DownloadCompleteReceiver receiver = null;
 
 	public DownLoader (Context c, Handler hd) {
 		this.c = c;
 		this.h = hd;
+	}
+
+	public void setDb(DbLocal db) {
+		this.db = db;
 	}
 
 	// 获取文件类型
@@ -44,7 +51,7 @@ public class DownLoader {
 	}
 
 	// 通过系统下载器下载文件
-	public void downloadBySystem (String url, String contentDisposition, String mimeType) {
+	public void downloadBySystem (String url, String fileName, String fid) {
 		// 指定下载地址
 		DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
 		// 允许媒体扫描，根据下载的文件类型被加入相册、音乐等媒体库
@@ -64,9 +71,6 @@ public class DownLoader {
 		// 允许下载的网路类型
 		request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
 		// 设置下载文件保存的路径和文件名
-//		String fileName  = URLUtil.guessFileName(url, contentDisposition, mimeType);
-		String fileName  = contentDisposition;
-//Log.i("-----fileName:{}", fileName);
 		request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
 //        另外可选一下方法，自定义下载路径
 //        request.setDestinationUri()
@@ -77,6 +81,8 @@ public class DownLoader {
 		// 添加一个下载任务
 		long downloadId = downloadManager.enqueue(request);
 //Log.i("-----downloadId:{}", downloadId + "");
+
+		this.db.mkvSet(fid, downloadId + "", "Fl");
 	}
 
 	// 获取下载监听
@@ -97,6 +103,29 @@ public class DownLoader {
 		}
 	}
 
+	public void openFilByDid (Context context, Long downloadId) {
+		DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
+		String type = downloadManager.getMimeTypeForDownloadedFile(downloadId);
+		if (TextUtils.isEmpty(type)) {
+			type = "*/*";
+		}
+		Uri uri = downloadManager.getUriForDownloadedFile(downloadId);
+//Log.i("-----Uri:{}", uri.toString() + "," + uri.getPath());
+		if (uri != null) {
+			Intent handlerIntent = new Intent(Intent.ACTION_VIEW);
+			if (Build.VERSION.SDK_INT >= 24) {	//判读版本是否在7.0以上
+				handlerIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);	//添加这一句表示对目标应用临时授权该Uri所代表的文件
+			}
+			handlerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			handlerIntent.setDataAndType(uri, type);
+			try {
+				context.startActivity(handlerIntent);
+			} catch (Exception e) {
+				h.sendMessage(h.obtainMessage(EmUh.Err.ordinal(), 0, 0, "无法打开文件！"));
+			}
+		}
+	}
+
 	// 下载管理器回调
 	public class DownloadCompleteReceiver extends BroadcastReceiver {
 		@Override
@@ -106,27 +135,7 @@ public class DownLoader {
 				if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(intent.getAction())) {
 					long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
 //Log.i("-----downloadId:{}", downloadId + "");
-					DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
-					String type = downloadManager.getMimeTypeForDownloadedFile(downloadId);
-//Log.i("-----getMimeType:{}", type + "");
-					if (TextUtils.isEmpty(type)) {
-						type = "*/*";
-					}
-					Uri uri = downloadManager.getUriForDownloadedFile(downloadId);
-//Log.i("-----Uri:{}", uri.toString() + "," + uri.getPath());
-					if (uri != null) {
-						Intent handlerIntent = new Intent(Intent.ACTION_VIEW);
-						if (Build.VERSION.SDK_INT >= 24) {	//判读版本是否在7.0以上
-							handlerIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);	//添加这一句表示对目标应用临时授权该Uri所代表的文件
-						}
-						handlerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-						handlerIntent.setDataAndType(uri, type);
-						try {
-							context.startActivity(handlerIntent);
-						} catch (Exception e) {
-							h.sendMessage(h.obtainMessage(EmUh.Err.ordinal(), 0, 0, "无法打开文件！"));
-						}
-					}
+					openFilByDid(context, downloadId);
 				}
 			}
 		}

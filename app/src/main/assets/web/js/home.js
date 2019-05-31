@@ -52,7 +52,7 @@ dat = {
 						break;
 					case 2:
 						a.innerHTML = "<strong>📄 </strong>" + d[i].nam;
-						a.href = "javascript: rfdo.downLoad(\"" + d[i].path + "\",\"" + d[i].nam + "\");";
+						a.href = "javascript: rfdo.downLoad(\"" + d[i].path + "\",\"" + d[i].nam + "\",\"" + d[i].id + "\");";
 						break;
 					default:
 						a.innerHTML = d[i].nam;

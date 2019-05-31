@@ -13,8 +13,13 @@ import static tk.ziniulian.util.Str.meg;
  */
 
 public class DbLocal extends SQLiteOpenHelper {
-	public DbLocal(Context c) {
-		super(new SdDb(c), EmLocalCrtSql.dbNam.toString(), null, 1);
+	public DbLocal(Context c, int version) {
+		super(new SdDb(c), EmLocalCrtSql.dbNam.toString(), null, version);
+	}
+
+	// 数据库文件不存储在SD卡里的构造方法
+	public DbLocal(Context c, int version, boolean noSd) {
+		super(c, EmLocalCrtSql.dbNam.toString(), null, version);
 	}
 
 	@Override

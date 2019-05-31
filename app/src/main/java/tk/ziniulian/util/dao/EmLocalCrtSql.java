@@ -6,22 +6,19 @@ package tk.ziniulian.util.dao;
  */
 
 public enum EmLocalCrtSql {
-	sdDir("Invengo/FileShar/DB/"),	// 数据库存储路径
+	sdDir("Invengo/FlShar/DB/"),	// 数据库存储路径
 
-	dbNam("filShar"),	// 数据库名
+	dbNam("flShar.db"),	// 数据库名
 
 	Bkv(	// 基本键值对表
 		"create table Bkv(" +	// 表名
 		"k text primary key not null, " +	// 键
 		"v text)"),	// 值
 
-	Simi(	// 分类
-		"create table Simi(" +	// 表名
-		"id INTEGER PRIMARY KEY AUTOINCREMENT, " +	// 键，自增
-		"pid INTEGER, " +	// 父ID
-		"nam text, " +	// 名称
-		"typ INTEGER, " +	// 类型
-		"path text)");	// 路径
+	Fl(	// 文件存储键值对
+		"create table Fl(" +	// 表名
+		"k text primary key not null, " +	// 文件服务端ID
+		"v text)");	// 文件下载ID
 
 	private final String sql;
 	EmLocalCrtSql(String s) {
