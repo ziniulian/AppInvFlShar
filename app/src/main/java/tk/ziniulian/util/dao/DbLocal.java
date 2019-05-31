@@ -122,4 +122,45 @@ public class DbLocal extends SQLiteOpenHelper {
 		exe(EmLocalSql.KvDel, k, tnam);
 	}
 
+	// 添加文件记录
+	public void addFl (String fid, Long did, String typ) {
+		exe(EmLocalSql.FlAdd, fid, did + "", typ);
+	}
+
+	// 获取下载ID
+	public Long getDid (String fid) {
+		Long r = null;
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor c = db.rawQuery(meg(
+				EmLocalSql.FlDid.toString(),
+				fid
+		), null);
+
+		if (c.moveToNext()) {
+			r = c.getLong(0);
+		}
+
+		c.close();
+		db.close();
+		return r;
+	}
+
+	// 获取文件类型
+	public String getTyp (Long did) {
+		String r = null;
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor c = db.rawQuery(meg(
+				EmLocalSql.FlTyp.toString(),
+				did + ""
+		), null);
+
+		if (c.moveToNext()) {
+			r = c.getString(0);
+		}
+
+		c.close();
+		db.close();
+		return r;
+	}
+
 }

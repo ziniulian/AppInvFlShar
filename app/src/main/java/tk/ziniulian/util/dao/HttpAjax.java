@@ -11,6 +11,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import tk.ziniulian.util.Str;
+
 /**
  * Ajax
  * Created by LZR on 2019/4/15.
@@ -59,7 +61,7 @@ public class HttpAjax implements Runnable {
 				c.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 				c.connect();
 				DataOutputStream o = new DataOutputStream(c.getOutputStream());
-				o.writeBytes(this.content);
+				o.write(Str.Dat2Bytes(this.content));
 				o.flush();
 				o.close();
 			} else {	// GET

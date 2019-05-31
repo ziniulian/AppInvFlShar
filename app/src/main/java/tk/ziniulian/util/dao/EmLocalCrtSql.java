@@ -17,8 +17,9 @@ public enum EmLocalCrtSql {
 
 	Fl(	// 文件存储键值对
 		"create table Fl(" +	// 表名
-		"k text primary key not null, " +	// 文件服务端ID
-		"v text)");	// 文件下载ID
+		"fid text primary key not null, " +	// 文件服务端ID
+		"did number," +	// 文件下载ID
+		"typ text)");	// 文件类型
 
 	private final String sql;
 	EmLocalCrtSql(String s) {

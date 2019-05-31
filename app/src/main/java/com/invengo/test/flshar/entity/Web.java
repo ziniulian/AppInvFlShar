@@ -30,7 +30,8 @@ public class Web {
 	private HttpAjaxUpFile ajxuf;
 	private DownLoader dr;
 	private DbLocal db;
-	private String doMain = "http://125.74.27.226:8888/";
+//	private String doMain = "http://125.74.27.226:8888/";
+	private String doMain = "http://192.169.0.12/api/";
 
 	public Web (Ma m) {
 		this.ma = m;
@@ -48,13 +49,17 @@ public class Web {
 	}
 
 	@JavascriptInterface
+	public void ajxPost (String url, String dat) {
+		this.ajx.post(doMain + url, dat);
+	}
+
+	@JavascriptInterface
 	public void downLoad (String url, String nam, String fid) {
-		String did = this.db.mkvGet(fid, "Fl");
+		Long did = this.db.getDid(fid);
 		if (did != null) {
 			DownloadManager downloadManager = (DownloadManager)ma.getSystemService(DOWNLOAD_SERVICE);
 			DownloadManager.Query query = new DownloadManager.Query();
-			Long id = Long.parseLong(did);
-			query.setFilterById(id);
+			query.setFilterById(did);
 			Cursor cursor = downloadManager.query(query);
 			if (cursor != null && cursor.moveToFirst()) {
 				int columnIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
@@ -69,14 +74,14 @@ public class Web {
 					case DownloadManager.STATUS_SUCCESSFUL:    // 下载成功
 						boolean b = true;
 						try {
-							downloadManager.openDownloadedFile(id).close();    // 检查下载的文件是否存在
+							downloadManager.openDownloadedFile(did).close();    // 检查下载的文件是否存在
 						} catch (FileNotFoundException e) {
 							b = false;	// 文件不存在
 						} catch (Exception e) {
 //							e.printStackTrace();
 						}
 						if (b) {
-							this.dr.openFilByDid(ma, id);
+							this.dr.openFilByDid(ma, did);
 							return;
 						}
 						break;

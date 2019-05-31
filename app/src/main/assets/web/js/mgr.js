@@ -18,7 +18,8 @@ dat.hidDir = function () {
 dat.addDir = function () {
 	var nam = dnamDom.value;
 	if (nam) {
-		rfdo.ajxGet("addSimi/" + nam + "/" + dat.id + "/" + dmmoDom.value);
+		// rfdo.ajxGet("addSimi/" + nam + "/" + dat.id + "/" + dmmoDom.value);
+		rfdo.ajxPost("addSimi/", "nam=" + nam + "&pid=" + dat.id + "&memo=" + dmmoDom.value);
 	} else {
 		tools.memo.show("名称不能为空！");
 	}

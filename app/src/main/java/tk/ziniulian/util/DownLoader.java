@@ -47,6 +47,9 @@ public class DownLoader {
 			type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
 		}
 //Log.i("-----type:{}", type + "");
+		if (TextUtils.isEmpty(type)) {
+			type = "*/*";
+		}
 		return type;
 	}
 
@@ -82,7 +85,7 @@ public class DownLoader {
 		long downloadId = downloadManager.enqueue(request);
 //Log.i("-----downloadId:{}", downloadId + "");
 
-		this.db.mkvSet(fid, downloadId + "", "Fl");
+		this.db.addFl(fid, downloadId, getMIMEType(fileName));
 	}
 
 	// 获取下载监听
@@ -105,10 +108,9 @@ public class DownLoader {
 
 	public void openFilByDid (Context context, Long downloadId) {
 		DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
-		String type = downloadManager.getMimeTypeForDownloadedFile(downloadId);
-		if (TextUtils.isEmpty(type)) {
-			type = "*/*";
-		}
+		String type = this.db.getTyp(downloadId);
+
+//Log.i("-----typ-----", type + "");
 		Uri uri = downloadManager.getUriForDownloadedFile(downloadId);
 //Log.i("-----Uri:{}", uri.toString() + "," + uri.getPath());
 		if (uri != null) {

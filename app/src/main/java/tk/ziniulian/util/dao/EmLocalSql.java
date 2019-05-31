@@ -17,7 +17,16 @@ public enum EmLocalSql {
 	KvAdd("insert into <2> values('<0>', '<1>')"),
 
 	// 删除键值对
-	KvDel("delete from <1> where k = '<0>'");
+	KvDel("delete from <1> where k = '<0>'"),
+
+	// 添加文件记录
+	FlAdd("insert into Fl values('<0>',<1>, '<2>')"),
+
+	// 通过文件ID获取下载ID
+	FlDid("select did from Fl where fid = '<0>'"),
+
+	// 通过下载ID获取文件类型
+	FlTyp("select typ from Fl where did = <0>");
 
 	private final String sql;
 	EmLocalSql(String s) {
