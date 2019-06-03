@@ -59,8 +59,15 @@ public class DownLoader {
 		DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
 		// 允许媒体扫描，根据下载的文件类型被加入相册、音乐等媒体库
 		request.allowScanningByMediaScanner();
-		// 设置通知的显示类型，下载进行时和完成后显示通知
+
+		/*
+		 * 设置在通知栏是否显示下载通知(下载进度), 有 3 个值可选:
+		 *    VISIBILITY_VISIBLE:                   下载过程中可见, 下载完后自动消失 (默认)
+		 *    VISIBILITY_VISIBLE_NOTIFY_COMPLETED:  下载过程中和下载完成后均可见
+		 *    VISIBILITY_HIDDEN:                    始终不显示通知
+		 */
 		request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+
 		// 设置通知栏的标题，如果不设置，默认使用文件名
 //        request.setTitle("This is title");
 		// 设置通知栏的描述
@@ -71,8 +78,16 @@ public class DownLoader {
 		request.setVisibleInDownloadsUi(true);
 		// 允许漫游时下载
 		request.setAllowedOverRoaming(true);
-		// 允许下载的网路类型
-		request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
+
+		/*
+		 * 设置允许使用的网络类型, 可选值:
+		 *     NETWORK_MOBILE:      移动网络
+		 *     NETWORK_WIFI:        WIFI网络
+		 *     NETWORK_BLUETOOTH:   蓝牙网络
+		 * 默认为所有网络都允许
+		 */
+		// request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
+
 		// 设置下载文件保存的路径和文件名
 		request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
 //        另外可选一下方法，自定义下载路径

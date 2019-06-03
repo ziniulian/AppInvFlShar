@@ -37,20 +37,20 @@ var dat = [
 	{id:26, nam:"XCJP-3A", typ:1, pid:19, path:"2,16,19"},
 	{id:27, nam:"XCJP-3S", typ:1, pid:19, path:"2,16,19"},
 	{id:28, nam:"XCJP-5G", typ:1, pid:20, path:"2,16,20"},
-	{id:29, nam:"XCJP-5G说明书", typ:2, memo:"简单的说明...", pid:28, path:"pag.pdf"},
-	{id:30, nam:"XCJP-5G图纸", typ:2, memo:"简单的说明...", pid:28, path:"logo.png"},
-	{id:31, nam:"XCJP-3A说明书", typ:2, memo:"简单的说明...", pid:26, path:"pag.pdf"},
-	{id:32, nam:"XCJP-3S图纸", typ:2, memo:"简单的说明...", pid:27, path:"logo.png"},
-	{id:33, nam:"XC-3A图纸", typ:2, memo:"简单的说明...", pid:21, path:"logo.png"},
-	{id:34, nam:"XC-3B图纸", typ:2, memo:"简单的说明...", pid:22, path:"logo.png"},
-	{id:35, nam:"XC-3C图纸", typ:2, memo:"简单的说明...", pid:23, path:"logo.png"},
-	{id:36, nam:"XC-3E图纸", typ:2, memo:"简单的说明...", pid:24, path:"logo.png"},
-	{id:37, nam:"XC-3F图纸", typ:2, memo:"简单的说明...", pid:25, path:"logo.png"},
-	{id:38, nam:"XCTF_2说明书", typ:2, memo:"简单的说明...", pid:11, path:"pag.pdf"},
-	{id:39, nam:"XCTF_2J说明书", typ:2, memo:"简单的说明...", pid:12, path:"pag.pdf"},
-	{id:40, nam:"XCTF_3J说明书", typ:2, memo:"简单的说明...", pid:13, path:"pag.pdf"},
-	{id:41, nam:"XCTF_5说明书", typ:2, memo:"简单的说明...", pid:14, path:"pag.pdf"},
-	{id:42, nam:"读出器简介", typ:2, memo:"简单的说明...", pid:15, path:"pag.pdf"},
+	{id:29, nam:"XCJP-5G说明书.pdf", typ:2, memo:"简单的说明...", pid:28, path:"pag.pdf"},
+	{id:30, nam:"XCJP-5G图纸.png", typ:2, memo:"简单的说明...", pid:28, path:"logo.png"},
+	{id:31, nam:"XCJP-3A说明书.pdf", typ:2, memo:"简单的说明...", pid:26, path:"pag.pdf"},
+	{id:32, nam:"XCJP-3S图纸.png", typ:2, memo:"简单的说明...", pid:27, path:"logo.png"},
+	{id:33, nam:"XC-3A图纸.png", typ:2, memo:"简单的说明...", pid:21, path:"logo.png"},
+	{id:34, nam:"XC-3B图纸.png", typ:2, memo:"简单的说明...", pid:22, path:"logo.png"},
+	{id:35, nam:"XC-3C图纸.png", typ:2, memo:"简单的说明...", pid:23, path:"logo.png"},
+	{id:36, nam:"XC-3E图纸.png", typ:2, memo:"简单的说明...", pid:24, path:"logo.png"},
+	{id:37, nam:"XC-3F图纸.png", typ:2, memo:"简单的说明...", pid:25, path:"logo.png"},
+	{id:38, nam:"XCTF_2说明书.pdf", typ:2, memo:"简单的说明...", pid:11, path:"pag.pdf"},
+	{id:39, nam:"XCTF_2J说明书.pdf", typ:2, memo:"简单的说明...", pid:12, path:"pag.pdf"},
+	{id:40, nam:"XCTF_3J说明书.pdf", typ:2, memo:"简单的说明...", pid:13, path:"pag.pdf"},
+	{id:41, nam:"XCTF_5说明书.pdf", typ:2, memo:"简单的说明...", pid:14, path:"pag.pdf"},
+	{id:42, nam:"读出器简介.pdf", typ:2, memo:"简单的说明...", pid:15, path:"pag.pdf"},
 	{id:43, nam:"其它", typ:1, pid:0, path:""}
 ];
 
@@ -224,6 +224,7 @@ srv.use("*", function (req, res) {
 });
 
 srv.start();
+console.log("服务已运行 ...");
 
 // // 开启 HTTPS 协议
 // var httpsOp = {
@@ -232,5 +233,5 @@ srv.start();
 // 	cert: fs.readFileSync("./key/certificate.pem")
 // };
 // https.createServer(httpsOp, srv.so).listen(443, function() {
-// 	console.log("服务已运行 ...");
+// 	console.log("HTTPS服务已运行 ...");
 // });
