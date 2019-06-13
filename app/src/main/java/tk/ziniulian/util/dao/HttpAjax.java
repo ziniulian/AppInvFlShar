@@ -61,7 +61,9 @@ public class HttpAjax implements Runnable {
 				c.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 				c.connect();
 				DataOutputStream o = new DataOutputStream(c.getOutputStream());
-				o.write(Str.Dat2Bytes(this.content));
+				if (this.content.length() > 0) {
+					o.write(Str.Dat2Bytes(this.content));
+				}
 				o.flush();
 				o.close();
 			} else {	// GET

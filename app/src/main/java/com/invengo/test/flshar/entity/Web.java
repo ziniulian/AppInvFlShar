@@ -8,6 +8,7 @@ import android.webkit.JavascriptInterface;
 
 import com.invengo.test.flshar.Ma;
 import com.invengo.test.flshar.enums.EmUh;
+import com.invengo.test.flshar.enums.EmUrl;
 
 import java.io.FileNotFoundException;
 
@@ -30,8 +31,9 @@ public class Web {
 	private HttpAjaxUpFile ajxuf;
 	private DownLoader dr;
 	private DbLocal db;
-	private String doMain = "http://125.74.27.226:8888/";
+//	private String doMain = "http://125.74.27.226:8888/";
 //	private String doMain = "http://192.169.0.12/api/";
+	private String doMain = "http://134.175.29.108/api/";
 
 	public Web (Ma m) {
 		this.ma = m;
@@ -101,12 +103,37 @@ public class Web {
 	}
 
 	@JavascriptInterface
-	public void upFil (String url, String path, String pid, String memo) {
-		if (this.ajxuf.post(doMain + url, path, pid, memo)) {
+	public void upFil (String url, String path, String pid, String memo, String uid) {
+		if (this.ajxuf.post(doMain + url, path, pid, memo, uid)) {
 			h.sendMessage(h.obtainMessage(EmUh.Err.ordinal(), 0, 0, "文件上传中，请稍候..."));
 		} else {
 			h.sendMessage(h.obtainMessage(EmUh.Err.ordinal(), 0, 0, "上传失败：有文件正在上传"));
 		}
 	}
 
+	@JavascriptInterface
+	public String kvGet (String k) {
+		return this.db.kvGet(k);
+	}
+
+	@JavascriptInterface
+	public void kvSet (String k, String v) {
+		this.db.kvSet(k, v);
+	}
+
+	@JavascriptInterface
+	public void kvDel (String k) {
+		this.db.kvDel(k);
+	}
+
+	@JavascriptInterface
+	public void logout () {
+		this.db.kvDel("uid");
+		this.ma.sendUrl(EmUrl.Login);
+	}
+
+	@JavascriptInterface
+	public String getUid () {
+		return this.db.kvGet("uid");
+	}
 }

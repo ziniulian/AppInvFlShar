@@ -17,23 +17,43 @@
 
 	<body>
 		<div id="boso" class="boso Lc_noadr">
-			<div>
-				<input id="inDom" type="text" class="txt" placeholder="请输入关键字" onfocus="this.select();"/>
-				<a class="btn" href="javascript: dat.search();">🔎</a>
-			</div>
+			<!-- <div class="midOut mfs">
+				<a class="mgrBtn" href="javascript: dat.showDir();">新增文件夹</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="mgrBtn" href="javascript: dat.showFil();">上传文件</a>
+			</div> -->
+			<div class="barBtn sfs" onclick="barDom.className='bar';">➰</div>
 			<div class="bcnOut sfs">
 				<a href="./home.html">首页</a>
 				<span id="bcnDom"></span>
 			</div>
-			<div id="listDom" class="list mfs">
-				<!-- <a href="javascript: rfdo.downLoad('a.7z');">7z</a><div>aacccccccccccccccccccccaaaaaaaaaaabbbbbbbbbbbbbbbbb</div>
-				<a href="javascript: rfdo.downLoad('a.zip');">zip</a>
-				<a href="javascript: rfdo.downLoad('a.txt');">txt</a>
-				<a href="javascript: rfdo.downLoad('a.docx');">docx</a>
-				<a href="javascript: rfdo.downLoad('a.pptx');">pptx</a>
-				<a href="javascript: rfdo.downLoad('a.xlsx');">xlsx</a>
-				<a href="javascript: rfdo.downLoad('pag.pdf');">pdf</a>
-				<a href="javascript: rfdo.downLoad('logo.png');">png</a> -->
+			<div id="dirDom" class="Lc_nosee">
+				<div class="midOut mfs">
+					<input id="dnamDom" type="text" class="mgrTxt" placeholder="请输入文件夹名称" onfocus="this.select();"/><br/>
+					<textarea id="dmmoDom" class="mgrTxt" placeholder="简述" onfocus="this.select();"></textarea><br/>
+					<a class="mgrBtn" href="javascript: dat.addDir();">确定</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="mgrBtn" href="javascript: dat.hidDir();">取消</a>
+				</div>
+			</div>
+			<div id="filDom" class="Lc_nosee">
+				<div class="midOut mfs">
+					<div id="fnamDom" class="mgrTxt" onclick="dat.scdFil();">点此选择文件</div>
+					<input id="fpathDom" type="hidden"/>
+					<textarea id="fmmoDom" class="mgrTxt" placeholder="简述" onfocus="this.select();"></textarea><br/>
+					<a class="mgrBtn" href="javascript: dat.addFil();">确定</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="mgrBtn" href="javascript: dat.hidDir();">取消</a>
+				</div>
+			</div>
+			<div id="listDom" class="list mfs"></div>
+			<div id="barDom" class="Lc_nosee" onclick="this.className='Lc_nosee';">
+				<div class="barc mfs">
+					<a href="./search.html"><div>文件搜索</div></a>
+					<div id="btnDirDom" onclick="dat.showDir();">新增文件夹</div>
+					<div id="btnFilDom" onclick="dat.showFil();">上传文件</div>
+					<div onclick="dat.logout();">登出</div>
+				</div>
 			</div>
 		</div>
 		<div id="memoDom" class="memo"></div>

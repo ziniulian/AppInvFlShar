@@ -16,9 +16,36 @@
 	vertical-align: middle;
 }
 
+.barBtn {
+	text-align: right;
+	height: 0;
+	margin-bottom: 0.5rem;
+}
+
+.bar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	text-align: right;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.barc {
+	display: inline-block;
+	width: 60%;
+	padding-left: 2%;
+	height: 100%;
+	text-align: left;
+	line-height: 3;
+	background-color: #FFF;
+}
+
 .bcnOut {
 	width: 97%;
-	margin: 1rem auto;
+	margin: 0 auto;
 	line-height: 2.5;
 }
 
@@ -53,6 +80,7 @@
 	bottom: 1rem;
 	right: 1rem;
 	color: #F00;
+	z-index: 20;
 }
 
 .mgrBtn {

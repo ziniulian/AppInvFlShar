@@ -70,7 +70,7 @@ public class Ma extends AppCompatActivity {
 			}
 		});
 
-		sendUrl(EmUrl.Index);
+		sendUrl(EmUrl.Login );
 	}
 
 	@Override

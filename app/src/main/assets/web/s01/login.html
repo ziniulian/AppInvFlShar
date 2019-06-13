@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Exit</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0" />
+		<meta charset="utf-8" />
+
+		<link href="../css/base.css" rel="stylesheet" type="text/css" />
+		<link href="../css/s01.css" rel="stylesheet" type="text/css" />
+
+		<script src="../js/tools.js"></script>
+		<script src="../js/login.js"></script>
+
+		<style type="text/css">
+		</style>
+	</head>
+
+	<body>
+		<div id="boso" class="boso Lc_noadr bfs midOut">
+			<br/>兰州远望文件管理<br/>
+			<br/><input id="unamDom" type="text" placeholder="请输入用户名" onfocus="this.select();"/>
+			<br/><input id="pwdDom" type="text" placeholder="请输入密码" onfocus="this.select();"/>
+			<br/><br/><span class="mfs" onclick="dat.login();">登 录</span>
+		</div>
+		<div id="memoDom" class="memo"></div>
+	</body>
+
+	<script type="text/javascript">
+		document.body.onload = init;
+	</script>
+</html>

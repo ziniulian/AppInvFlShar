@@ -28,18 +28,20 @@ public class HttpAjaxUpFile implements Runnable {
 
 	private String pid;
 	private String memo;
+	private String uid;
 
 	public HttpAjaxUpFile(Handler hd) {
 		this.h = hd;
 	}
 
-	public boolean post(String u, String fil, String id, String m) {
+	public boolean post(String u, String fil, String id, String m, String uid) {
 		if (!this.busy) {
 			this.busy = true;
 			this.url = u;
 			this.filNam = fil;
 			this.pid = id;
 			this.memo = m;
+			this.uid = uid;
 			new Thread(this).start();
 			return true;
 		}
@@ -65,7 +67,14 @@ public class HttpAjaxUpFile implements Runnable {
 					"Content-Disposition: form-data; name=\"pid\"\r\n" +
 					"Content-Type: text/plain; charset=UTF-8\r\n" +
 					"Content-Transfer-Encoding: 8bit\r\n\r\n");
-			o.writeBytes(this.pid);
+			o.write(Str.Dat2Bytes(this.pid));
+
+			// 参数 uid
+			o.writeBytes("\r\n--ZnGpDtePMx0KLzr_G0X99Yef9rZiniulian\r\n" +
+					"Content-Disposition: form-data; name=\"uid\"\r\n" +
+					"Content-Type: text/plain; charset=UTF-8\r\n" +
+					"Content-Transfer-Encoding: 8bit\r\n\r\n");
+			o.write(Str.Dat2Bytes(this.uid));
 
 			// 参数 memo
 			o.writeBytes("\r\n--ZnGpDtePMx0KLzr_G0X99Yef9rZiniulian\r\n" +
