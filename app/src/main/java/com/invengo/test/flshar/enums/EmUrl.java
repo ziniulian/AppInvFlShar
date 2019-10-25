@@ -11,6 +11,7 @@ public enum EmUrl {
 	Exit("file:///android_asset/web/s01/home.html"),
 	Login("file:///android_asset/web/s01/login.html"),
 	Search("file:///android_asset/web/s01/search.html"),
+	Message("file:///android_asset/web/s01/message.html"),
 	AjaxCb("javascript: dat.hdAjaxCb(<0>);"),
 	Memo("javascript: tools.memo.show(\"<0>\");"),
 	SetFil("javascript: dat.setFil(\"<0>\", \"<1>\");"),

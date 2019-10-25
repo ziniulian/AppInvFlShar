@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Exit</title>
+		<title>Message</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0" />
 		<meta charset="utf-8" />
 
@@ -9,18 +9,24 @@
 		<link href="../css/s01.css" rel="stylesheet" type="text/css" />
 
 		<script src="../js/tools.js"></script>
-		<script src="../js/login.js"></script>
+		<script src="../js/message.js"></script>
 
 		<style type="text/css">
+			.memo {
+				bottom: 8%;
+				right: auto;
+				left: 1rem;
+    		}
 		</style>
 	</head>
 
-	<body>
-		<div id="boso" class="boso Lc_noadr bfs midOut">
-			<br/>兰州远望文件管理<br/>
-			<br/><input id="unamDom" type="text" placeholder="请输入用户名" onfocus="this.select();"/>
-			<br/><input id="pwdDom" type="password" placeholder="请输入密码" onfocus="this.select();"/>
-			<br/><br/><span class="mfs" onclick="dat.login();">登 录</span>
+	<body onresize="dat.txtRow(1);">
+		<div id="boso" class="boso Lc_noadr">
+			<div id="outDoe" class="msgOut" onscroll="dat.toPag();"></div>
+			<div id="barDoe" class="msgBar">
+				<textarea id="txtDoe" rows="1" class="msgTxt sfs" onfocus="dat.txtRow();" onscroll="dat.txtRow();" onblur="dat.txtRow(1);"></textarea>
+				<div id="btnDoe" class="msgmBtn sfs" onclick="dat.addMsg();">发送</div>
+			</div>
 		</div>
 		<div id="memoDom" class="memo"></div>
 	</body>

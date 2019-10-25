@@ -99,3 +99,52 @@
 	border: none;
 	outline: medium;
 }
+
+/**************** 消息页面 ********************/
+.msgOut {
+    height: 50%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.msgItem {
+    position: relative;
+    margin-bottom: 0.6rem;
+}
+
+.msgTim {
+    text-align: right;
+    font-style: italic;
+    color: #666;
+}
+
+.msgDel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #F00;
+}
+
+.msgBar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #EEE;
+}
+
+.msgTxt {
+    margin: 2%;
+    width: 30%;
+    padding: 0.2rem 0.3rem;
+    vertical-align: middle;
+}
+
+.msgmBtn {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0.2rem 0.3rem;
+    background-color: #0C0;
+    color: #FFF;
+    border-radius: 0.3rem;
+}

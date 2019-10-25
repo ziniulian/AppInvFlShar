@@ -81,9 +81,13 @@ public class HttpAjax implements Runnable {
 				is.close();
 				bf.close();
 				c.disconnect();
+//Log.i("u", this.url);
+//Log.i("c", this.content == null ? "" : this.content);
+//Log.i("r", sb.toString());
 				this.h.sendMessage(this.h.obtainMessage(EmUh.Ajax.ordinal(), 0, 0, sb.toString()));
 			}
 		} catch (Exception e) {
+//			e.printStackTrace();
 			this.h.sendMessage(this.h.obtainMessage(EmUh.Err.ordinal(), 0, 0, "网络连接失败！"));
 		} finally {
 			this.busy = false;

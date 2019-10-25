@@ -4,6 +4,7 @@ import android.app.DownloadManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Handler;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 
 import com.invengo.test.flshar.Ma;
@@ -43,6 +44,11 @@ public class Web {
 		this.dr = ma.getDr();
 		this.db = new DbLocal(m, 1, true);
 		this.dr.setDb(this.db);
+	}
+
+	@JavascriptInterface
+	public void log (String txt) {
+		Log.i("---web---", txt);
 	}
 
 	@JavascriptInterface
