@@ -32,9 +32,9 @@ public class Web {
 	private HttpAjaxUpFile ajxuf;
 	private DownLoader dr;
 	private DbLocal db;
-//	private String doMain = "http://125.74.27.226:8888/";
+	private String doMain = "http://125.74.27.226:8888/api/";
 //	private String doMain = "http://192.169.0.12/api/";
-	private String doMain = "http://134.175.29.108/api/";
+//	private String doMain = "http://134.175.29.108/api/";
 
 	public Web (Ma m) {
 		this.ma = m;
