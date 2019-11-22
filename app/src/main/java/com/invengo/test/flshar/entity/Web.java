@@ -3,7 +3,9 @@ package com.invengo.test.flshar.entity;
 import android.app.DownloadManager;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 
@@ -141,5 +143,16 @@ public class Web {
 	@JavascriptInterface
 	public String getUid () {
 		return this.db.kvGet("uid");
+	}
+
+	// 设置日期
+	@JavascriptInterface
+	public void showDatePicker (int y, int m, int d) {
+		Message msg = h.obtainMessage(EmUh.Date.ordinal());
+		Bundle b = msg.getData();
+		b.putInt("y", y);
+		b.putInt("m", m);
+		b.putInt("d", d);
+		h.sendMessage(msg);
 	}
 }

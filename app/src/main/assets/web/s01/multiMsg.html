@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>MultiMsg</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0" />
+		<meta charset="utf-8" />
+
+		<link href="../css/base.css" rel="stylesheet" type="text/css" />
+		<link href="../css/s01.css" rel="stylesheet" type="text/css" />
+
+		<script src="../js/tools.js"></script>
+		<script src="../js/multiMsg.js"></script>
+
+		<style type="text/css">
+			.memo {
+				bottom: 8%;
+				right: auto;
+				left: 1rem;
+    		}
+    		.boso {
+				overflow-x: hidden;
+				overflow-y: auto;
+    		}
+    		.memo {
+				top: 0.2rem;
+				left: 0.2rem;
+				bottom: auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="boso" class="boso Lc_noadr" onscroll="dat.toPag();">
+			<div id="padDoe" class="mmsgmPad"></div>
+			<div id="outDoe" class="bfs"></div>
+			<div class="mmsgmBar">
+				<a class="mmsgmBtn sfs" href="./savMsg.html">添加消息</a>
+			</div>
+		</div>
+		<div id="memoDom" class="memo"></div>
+	</body>
+
+	<script type="text/javascript">
+		document.body.onload = init;
+	</script>
+</html>

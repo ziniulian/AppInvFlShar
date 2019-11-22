@@ -148,3 +148,33 @@
     color: #FFF;
     border-radius: 0.3rem;
 }
+
+/**************** 详细消息的页面 ********************/
+.mmsgmPad {
+    height: 2.2rem;
+}
+
+.mmsgmBar {
+    position: fixed;
+    text-align: right;
+    width: 96%;
+    padding: 2%;
+    top: 0;
+    background-color: #FFF;
+}
+
+.mmsgmBtn {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0.3rem 0.8rem;
+    background-color: #0C0;
+    color: #FFF;
+    border-radius: 0.3rem;
+}
+
+.mmsgTxt {
+    margin: 2%;
+    width: 90%;
+    padding: 0.2rem 0.3rem;
+}

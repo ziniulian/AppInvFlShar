@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SavMsg</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0" />
+		<meta charset="utf-8" />
+
+		<link href="../css/base.css" rel="stylesheet" type="text/css" />
+		<link href="../css/s01.css" rel="stylesheet" type="text/css" />
+
+		<script src="../js/tools.js"></script>
+		<script src="../js/savMsg.js"></script>
+
+		<style type="text/css">
+			.memo {
+				bottom: 8%;
+				right: auto;
+				left: 1rem;
+    		}
+    		#timDoe {
+    			float: left;
+    		}
+    		input {
+    			border: solid 1px #CCC;
+    		}
+		</style>
+	</head>
+
+	<body>
+		<div id="boso" class="boso Lc_noadr">
+			<div class="mmsgmPad"></div>
+			<div class="mmsgmBar">
+				<div id="timDoe" class="sfs" onclick="dat.datePicker();"></div>
+				<div class="mmsgmBtn sfs" onclick="dat.addMsg();">保存</div>
+			</div>
+			<div>
+				<input id="addDoe" type="text" class="mmsgTxt sfs" placeholder="地点" value="兰州" onfocus="this.select();"/>
+			</div>
+			<div>
+				<textarea id="txtDoe" rows="3" class="mmsgTxt sfs" placeholder="内容"></textarea>
+			</div>
+			<div class="sfs"><br/><br/>----- 客户信息 -----<br/><br/></div>
+			<div>
+				<input id="namDoe" type="text" class="mmsgTxt sfs" placeholder="客户姓名" onfocus="this.select();"/>
+			</div>
+			<div>
+				<input id="telDoe" type="text" class="mmsgTxt sfs" placeholder="客户电话" onfocus="this.select();"/>
+			</div>
+			<div>
+				<input id="cpDoe" type="text" class="mmsgTxt sfs" placeholder="客户单位/公司" onfocus="this.select();"/>
+			</div>
+			<div>
+				<input id="depDoe" type="text" class="mmsgTxt sfs" placeholder="客户部门" onfocus="this.select();"/>
+			</div>
+			<div>
+				<input id="jobDoe" type="text" class="mmsgTxt sfs" placeholder="客户职务" onfocus="this.select();"/>
+			</div>
+		</div>
+		<div id="memoDom" class="memo"></div>
+	</body>
+
+	<script type="text/javascript">
+		document.body.onload = init;
+	</script>
+</html>

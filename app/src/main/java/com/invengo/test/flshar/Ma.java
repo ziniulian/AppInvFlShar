@@ -1,5 +1,8 @@
 package com.invengo.test.flshar;
 
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -32,6 +35,9 @@ public class Ma extends AppCompatActivity {
 	private WebView wv;
 	private String ver = "";
 	private Web w = new Web(this);
+
+	// 日期选择器
+	private DateSeter ds = new DateSeter();
 
 	private static String[] PERMISSIONS_STORAGE = {
 			"android.permission.READ_EXTERNAL_STORAGE",
@@ -137,6 +143,17 @@ public class Ma extends AppCompatActivity {
 		return uh;
 	}
 
+	// 显示对话框
+	public void showDialogFragment(DialogFragment df){
+		FragmentTransaction mFragTransaction = getFragmentManager().beginTransaction();
+		Fragment fragment =  getFragmentManager().findFragmentByTag("dialogFragment");
+		if(fragment!=null){
+			//为了不重复显示dialog，在显示对话框之前移除正在显示的对话框
+			mFragTransaction.remove(fragment);
+		}
+		df.show(mFragTransaction, "dialogFragment"); //显示一个Fragment并且给该Fragment添加一个Tag，可通过findFragmentByTag找到该Fragment
+	}
+
 	// 获取当前页面信息
 	private EmUrl getCurUi () {
 		try {
@@ -182,6 +199,10 @@ public class Ma extends AppCompatActivity {
 						default:
 							wv.loadUrl(Str.meg(EmUrl.AjaxCb.toString(), (String)msg.obj));
 					}
+					break;
+				case Date:
+					ds.setArg(msg.getData());
+					showDialogFragment(ds);
 					break;
 				case Err:
 					wv.loadUrl(Str.meg(EmUrl.Memo.toString(), (String)msg.obj));

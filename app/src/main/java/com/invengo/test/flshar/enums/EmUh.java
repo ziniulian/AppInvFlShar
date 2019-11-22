@@ -8,5 +8,6 @@ package com.invengo.test.flshar.enums;
 public enum EmUh {
 	Url,
 	Ajax,
+	Date,
 	Err
 }
